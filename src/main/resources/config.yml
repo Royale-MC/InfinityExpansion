@@ -32,6 +32,12 @@ quarry-options:
     quartz: .5
     emerald: .5
 
+  energy:
+    basic: 300
+    advanced: 600
+    void: 3600
+    infinity: 36000
+
   # The number of slimefun ticks it takes to mine 1 block. 1 slimefun ticks = .6 seconds by default
   ticks-per-output: 10
 

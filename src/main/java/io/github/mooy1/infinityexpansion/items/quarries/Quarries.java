@@ -67,6 +67,10 @@ public final class Quarries {
     public static final double LAPIS_CHANCE = getOscillatorChance("lapis");
     public static final double EMERALD_CHANCE = getOscillatorChance("emerald");
     public static final double QUARTZ_CHANCE = getOscillatorChance("quartz");
+    public static final int BASIC_ENERGY = getQuarryEnergy("basic");
+    public static final int ADVANCED_ENERGY = getQuarryEnergy("advanced");
+    public static final int VOID_ENERGY = getQuarryEnergy("void");
+    public static final int INFINITY_ENERGY = getQuarryEnergy("infinity");
     public static final SlimefunItemStack DIAMOND_OSCILLATOR = Oscillator.create(Material.DIAMOND, DIAMOND_CHANCE);
     public static final SlimefunItemStack REDSTONE_OSCILLATOR = Oscillator.create(Material.REDSTONE, REDSTONE_CHANCE);
     public static final SlimefunItemStack LAPIS_OSCILLATOR = Oscillator.create(Material.LAPIS_LAZULI, LAPIS_CHANCE);
@@ -75,6 +79,10 @@ public final class Quarries {
 
     private static double getOscillatorChance(String type) {
         return InfinityExpansion.config().getDouble("quarry-options.oscillators." + type, 0, 1);
+    }
+
+    private static int getQuarryEnergy(String type) {
+        return InfinityExpansion.config().getInt("quarry-options.energy." + type, 0, 1);
     }
 
     public static void setup(InfinityExpansion plugin) {
@@ -126,7 +134,7 @@ public final class Quarries {
                 Materials.MAGSTEEL_PLATE, SlimefunItems.CARBONADO_EDGED_CAPACITOR, Materials.MAGSTEEL_PLATE,
                 new ItemStack(Material.IRON_PICKAXE), SlimefunItems.GEO_MINER, new ItemStack(Material.IRON_PICKAXE),
                 Materials.MACHINE_CIRCUIT, Materials.MACHINE_CORE, Materials.MACHINE_CIRCUIT
-        }, 1, 6, outputs.toArray(new Material[0])).energyPerTick(300).register(plugin);
+        }, 1, 6, outputs.toArray(new Material[0])).energyPerTick(BASIC_ENERGY).register(plugin);
 
         if (section.getBoolean("quartz")) {
             new Oscillator(QUARTZ_OSCILLATOR, QUARTZ_CHANCE).register(plugin);
@@ -147,7 +155,7 @@ public final class Quarries {
                 Materials.MACHINE_PLATE, SlimefunItems.ENERGIZED_CAPACITOR, Materials.MACHINE_PLATE,
                 new ItemStack(Material.DIAMOND_PICKAXE), BASIC_QUARRY, new ItemStack(Material.DIAMOND_PICKAXE),
                 Materials.MACHINE_CIRCUIT, Materials.MACHINE_CORE, Materials.MACHINE_CIRCUIT
-        }, 2, 4, outputs.toArray(new Material[0])).energyPerTick(900).register(plugin);
+        }, 2, 4, outputs.toArray(new Material[0])).energyPerTick(ADVANCED_ENERGY).register(plugin);
 
         if (coal) {
             outputs.add(Material.COAL);
@@ -157,7 +165,7 @@ public final class Quarries {
                 Materials.VOID_INGOT, SlimefunExtension.VOID_CAPACITOR, Materials.VOID_INGOT,
                 new ItemStack(Material.NETHERITE_PICKAXE), ADVANCED_QUARRY, new ItemStack(Material.NETHERITE_PICKAXE),
                 Materials.MACHINE_CIRCUIT, Materials.MACHINE_CORE, Materials.MACHINE_CIRCUIT
-        }, 6, 2, outputs.toArray(new Material[0])).energyPerTick(3600).register(plugin);
+        }, 6, 2, outputs.toArray(new Material[0])).energyPerTick(VOID_ENERGY).register(plugin);
 
         if (coal) {
             outputs.add(Material.COAL);
@@ -170,7 +178,7 @@ public final class Quarries {
                 Materials.VOID_INGOT, null, Materials.INFINITE_INGOT, Materials.INFINITE_INGOT, null, Materials.VOID_INGOT,
                 Materials.VOID_INGOT, null, Materials.INFINITE_INGOT, Materials.INFINITE_INGOT, null, Materials.VOID_INGOT,
                 Materials.VOID_INGOT, null, Materials.INFINITE_INGOT, Materials.INFINITE_INGOT, null, Materials.VOID_INGOT
-        }, 64, 1, outputs.toArray(new Material[0])).energyPerTick(36000).register(plugin);
+        }, 64, 1, outputs.toArray(new Material[0])).energyPerTick(INFINITY_ENERGY).register(plugin);
     }
 
 }
