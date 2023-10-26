@@ -2,6 +2,7 @@ package io.github.mooy1.infinityexpansion.items;
 
 import javax.annotation.Nonnull;
 
+import io.github.mooy1.infinityexpansion.items.machines.InfinitySmeltery;
 import lombok.experimental.UtilityClass;
 
 import org.bukkit.Location;
@@ -65,10 +66,6 @@ public final class SlimefunExtension {
     private static final int ADVANCED_SMELTERY_ENERGY = 240;
     private static final int ADVANCED_SMELTERY_SPEED = 24;
 
-    public static final int INFINITY_SMELTERY_ENERGY = 20000;
-
-    public static final int INFINITY_SMELTERY_SPEED = 240;
-
     private static final int STAR_ENERGY = 1800;
     private static final int STAR_BUFFER = 90000;
 
@@ -91,10 +88,11 @@ public final class SlimefunExtension {
             MachineLore.energyPerSecond(ADVANCED_SMELTERY_ENERGY)
     );
 
-    public static final SlimefunItemStack INFINITY_SMELTERY = new SlimefunItemStack("INFINITY_SMELTERY", Material.FURNACE, "&bInfinity Smeltery", new String[] { "&7Smelts alloys almost instantly", "",
-
-            MachineLore.speed(240),
-            MachineLore.energyPerSecond(20000) }
+    public static final SlimefunItemStack INFINITY_SMELTERY = new SlimefunItemStack(
+            "INFINITY_SMELTERY", Material.FURNACE,
+            "&bInfinity Smeltery",
+            "&7Smelts alloys almost instantly",
+            ""
     );
 
     public static final SlimefunItemStack ADVANCED_CHARGER = new SlimefunItemStack(
@@ -327,11 +325,7 @@ public final class SlimefunExtension {
                 Materials.MACHINE_CIRCUIT, Materials.MACHINE_CORE, Materials.MACHINE_CIRCUIT
         }).setCapacity(ADVANCED_SMELTERY_ENERGY).setProcessingSpeed(ADVANCED_SMELTERY_SPEED).setEnergyConsumption(ADVANCED_SMELTERY_ENERGY).register(plugin);
 
-        new ElectricSmeltery(Groups.INFINITY_CHEAT, INFINITY_SMELTERY, (RecipeType)InfinityWorkbench.TYPE, new ItemStack[] {
-                (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.INFINITE_INGOT, (ItemStack)Materials.INFINITE_CIRCUIT, (ItemStack)Materials.INFINITE_CORE,
-                (ItemStack)Materials.INFINITE_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.INFINITE_INGOT, (ItemStack)ADVANCED_SMELTERY, (ItemStack)ADVANCED_SMELTERY, (ItemStack)Materials.INFINITE_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.INFINITE_INGOT,
-                (ItemStack)ADVANCED_SMELTERY, (ItemStack)ADVANCED_SMELTERY, (ItemStack)Materials.INFINITE_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.INFINITE_INGOT, (ItemStack)ADVANCED_SMELTERY, (ItemStack)ADVANCED_SMELTERY, (ItemStack)Materials.INFINITE_INGOT, (ItemStack)Materials.VOID_INGOT,
-                (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT, (ItemStack)Materials.VOID_INGOT }).setCapacity(INFINITY_SMELTERY_ENERGY).setProcessingSpeed(INFINITY_SMELTERY_SPEED).setEnergyConsumption(INFINITY_SMELTERY_ENERGY).register(plugin);
+        new InfinitySmeltery(INFINITY_SMELTERY).register(plugin);
     }
 
 }
